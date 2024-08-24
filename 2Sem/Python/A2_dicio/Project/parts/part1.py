@@ -41,7 +41,7 @@ while True:
         system("pause")
         continue
     newNota = input("Digite a Nota: ")
-    if newNota.isdigit():
+    if not newNota.isdigit():
         print(f"Notas só podem conter números.\n")
         system("pause")
         continue

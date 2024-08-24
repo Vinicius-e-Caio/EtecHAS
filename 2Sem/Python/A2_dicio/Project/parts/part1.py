@@ -2,59 +2,51 @@ from os import system
 from time import sleep
 
 # Functions - For tests
-def VerifyThis(newData, type):
-    letters = 'abcdefghijklmnopqrstuvwxyz'
-    numbers = '1234567890'
-    special = ',.'
-    if type == str:
-        for i in range(len(newData)):
-            if newData[i].lower() not in letters:
-                newData = False
-                break
-        return newData
-    if type == int:
-        for i in range(len(newData)):
-            if newData[i] not in numbers:
-                if newData[i] not in special:
-                    newData = False
-                    break
-                if newData[i] == ',':
-                    system("cls")
-                    print(f"Favor use . ao invés de ,")
-                    sleep(1)
-                    print(f"{newData} foi alterado para {newData.replace(',', '.')} \n")
-                    system("pause")
-                    newData = newData.replace(',', '.')
-        return float(newData)
+def VerifyThis(newAluno, newNota) -> bool:
+    newNota = newNota.replace(',', '.')
+    newNota = float(newNota)
+    if newNota < 0 or newNota > 10:
+        print("Nota inválida.\n")
+        return False
     return False
 
 # Dicts / Variables
 notas = {
-    'lara': 1.0,
-    'lara': 1.0,
-    'lara': 1.0,
-    'lara': 1.0,
-    'lara': 1.0,
-    'lara': 1.0,
-    'lara': 1.0,
-    'lara': 1.0,
-    'lara': 1.0
+    'lara2': 1.0,
+    'lara3': 1.0,
+    'lara4': 1.0,
+    'lara5': 1.0,
+    'lara6': 1.0,
+    'lara7': 1.0,
+    'lara8': 1.0,
+    'lara9': 13.0
 }
 
-
-
 while True:
+    contador = 0
+    for keys in notas.keys():
+        contador += 1
+    if contador == 10:
+        print("Limite de alunos atingido!")
+        system("pause")
+        continue
     system("cls")
-    newAluno = VerifyThis(input("Aluno: "), str)
-    if newAluno == False:
-        print(f"Inválido \n")
+    newAluno = input("Aluno: ")
+    if newAluno in notas:
+        print(f"Já existe um aluno com esse nome.\n")
         system("pause")
         continue
-    newNota = VerifyThis(input("Nota: "), int)
-    if newNota == False:
-        print(f"Inválido \n")
+    if not newAluno.isalpha():
+        print(f"Nomes só podem conter letras.\n")
         system("pause")
         continue
+    newNota = input("Digite a Nota: ")
+    if newNota.isdigit():
+        print(f"Notas só podem conter números.\n")
+        system("pause")
+        continue
+    VerifyThis(newAluno, newNota)
+
     while True: 
         system("cls")
         print(f"Aluno: {newAluno} \nNota: {newNota}")
@@ -71,24 +63,16 @@ while True:
             case _:
                 print("Digite um valor válido.")
         break
-    if len(notas) < 10:
-        while True:
-            retry = input("Adicionar outro? (S/N): ")
-            match confirm.upper():
-                case 'S':
-                    break
-                case 'N':
-                    retry == False
-                    break
-                case _:
-                    print("Digite um valor válido.")
-            break
-        if retry == False:
-            break
-        else:
-            continue
-    print("Limite de 10 Aluno excedido.")
-    break
-    
+    while True:
+        retry = input("Adicionar outro? (S/N): ")
+        match confirm.upper():
+            case 'S':
+                break
+            case 'N':
+                retry == False
+                break
+            case _:
+                print("Digite um valor válido.")
+                break    
             
 

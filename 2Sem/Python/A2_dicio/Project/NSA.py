@@ -81,7 +81,15 @@ def ExcluirAl(nomeAl: str) -> None:
 
 # Dicts / Variables
 retry = ""
-notas = {
+notas = {    "lara2": 10.0,
+    "lara3": 10.0,
+    "lara4": 10.0,
+    "lara5": 10.0,
+    "lara6": 10.0,
+    "lara7": 10.0,
+    "lara8": 10.0,
+    "lara9": 10.0,
+    "lara0": 10.0
 }
 
 
@@ -98,9 +106,17 @@ while key != 0:
         7 - Apagar todos os alunos da sala
     """)
     try:
-        option = int(input("Digite sua Opção: "))
+        option = input("Digite sua Opção: ")
+        if not option.isdigit():
+            print("Opção inválida!")
+            system("pause")
+            continue
+        else:
+            option = int(option)
     except ValueError:
         print("Digite um número.")
+    except NameError as error:
+        print("Digite um número./n", error)
 
     match option:
         case 1:
@@ -116,7 +132,7 @@ while key != 0:
             while True:
                 contador = 0
                 for keys in notas.keys():
-                    contador += 1
+                    contador = contador + 1
                 if contador == 10:
                     print("Limite de alunos atingido!")
                     system("pause")
@@ -249,11 +265,13 @@ while key != 0:
             system("pause")
             print(f"\n")
             # Main
+            soma = 0
             if len(notas) > 0:
                 for x in notas.values():
                     soma = x + soma
                 media = soma / len(notas)
-                print(media)
+                print("a média da turma é: ", media)
+                system("pause")
             else:
                 print(f"Você não possui alunos cadastrados. \n")
                 system("pause")
@@ -328,7 +346,6 @@ while key != 0:
                             continue
                 if option == True:
                     notas.clear()
-                    break
             else:
                 print(f"Você não possui alunos cadastrados. \n")
                 system("pause")
